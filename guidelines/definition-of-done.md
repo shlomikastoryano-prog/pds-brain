@@ -11,8 +11,15 @@ Use: the pre-check agent (SHELL-742) reads this list before a PR is opened. A ta
 | 3 | Pre-commit checks pass | Lint, format, commit format and Jira key |
 | 4 | Integration tests are added and pass | Tests exist for the change and pass. Open: do integration tests (backend response to final UI state) apply to a component library? |
 | 5 | Storybook stories and play functions are added; Chromatic shows only intended changes | Stories and play functions exist for the change. Open: is Chromatic in use? |
-| 6 | Accessibility check passes | An automated accessibility run (AXE) passes, and a list of manual checks is returned |
+| 6 | Accessibility check passes | AXE runs on every new or changed Design System element, through its Storybook stories. The agent returns the AXE result and a list of manual checks. The manual checks are done by the designer together with the agent |
 | 7 | The PR description links the ticket and notes any feature flag | The description has the ticket link and the feature flag note, and its claims match the change |
+
+## Proof that a check ran
+A check counts only if the agent's report shows it ran. "Nothing found" is not proof.
+- **Accessibility (item 6):** the report names every story AXE ran on, and gives the number of violations per story. A report with no story list, or with zero stories, is "not run", not "passed".
+- **Manual accessibility checks:** the report lists each manual check (keyboard flow, focus order, screen reader, long text) and marks it done or not done by the designer. Not done means the PR is not ready.
+- **Every other item:** the report shows what was checked (command, files or stories) and the result.
+- **Testing the agent:** once built, run it on a change with a known accessibility violation. It must report that violation. If it does not, the check does not work.
 
 ## Open questions for the team
 - Do integration tests (from the backend response to the final UI state) apply to this repo?
