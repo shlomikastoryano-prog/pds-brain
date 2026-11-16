@@ -8,9 +8,9 @@ Format: Do / Avoid / Why / Example. Examples are short illustrations written fro
 - **Do:** compute the value in the component (a field, `computed` or a pre-built map) and bind it. Simple conditions can stay in the template. Calling a signal (`count()`) in a template is fine.
 - **Avoid:** calling a plain function in the template, such as `{{ getLabel(item) }}` or `[class]="getClass(item)"`.
 - **Why:** a plain function runs on every change detection, even when the change is unrelated to it, which hurts performance. A signal is re-evaluated only when its own value changes. (Reason confirmed by the team reviewer, 2026-11-16.)
-- **Exceptions:** the rule is right in general, but there are always exceptions. Use judgement and state the reason in the PR.
+- **Exceptions:** the rule is right in general, but there are always exceptions. State the reason in the PR. Open with the reviewer: what exactly counts as an allowed bypass.
 - **Example:** `readonly label = computed(() => format(this.value()));` then `{{ label() }}`.
-- **Possible lint rule:** forbid call expressions in templates, but skip signals and `computed`. Seen 14 times. Open: do we want an automatic rule, and what are the known exceptions?
+- **Lint rule (reviewer decision, 2026-11-16):** forbid call expressions in templates, skipping signals and `computed`. Severity is **error**, not warning, because the issue is serious. A change that breaks it should not pass a PR. Open: the exact bypass the reviewer meant, and the known exceptions.
 - Seen in: PR 91, 300, 301.
 
 ## 2. No hard-coded English text
