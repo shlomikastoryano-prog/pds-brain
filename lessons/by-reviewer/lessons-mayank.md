@@ -4,12 +4,13 @@ Status: draft, not yet approved.
 Source: 63 review comments in 34 merged PRs, 2025-01-10 to 2026-09-08.
 Format: Do / Avoid / Why / Example. Examples are short illustrations written from the review comment, not copied code. "Why" is stated only where the review gave a reason; otherwise it is marked.
 
-## 1. No function calls from templates
-- **Do:** compute the value in the component (a field, `computed` or a pre-built map) and bind it. Simple conditions can stay in the template.
-- **Avoid:** `{{ getLabel(item) }}` or `[class]="getClass(item)"` in the template.
-- **Why:** reason not given in the comments (14 comments, no explanation). A common reason is that the function runs on every change detection. To be verified with the reviewer.
+## 1. No plain function calls from templates
+- **Do:** compute the value in the component (a field, `computed` or a pre-built map) and bind it. Simple conditions can stay in the template. Calling a signal (`count()`) in a template is fine.
+- **Avoid:** calling a plain function in the template, such as `{{ getLabel(item) }}` or `[class]="getClass(item)"`.
+- **Why:** a plain function runs on every change detection, even when the change is unrelated to it, which hurts performance. A signal is re-evaluated only when its own value changes. (Reason confirmed by the team reviewer, 2026-11-16.)
+- **Exceptions:** the rule is right in general, but there are always exceptions. Use judgement and state the reason in the PR.
 - **Example:** `readonly label = computed(() => format(this.value()));` then `{{ label() }}`.
-- **Possible lint rule:** forbid call expressions in templates. Seen 14 times, so a good candidate.
+- **Possible lint rule:** forbid call expressions in templates, but skip signals and `computed`. Seen 14 times. Open: do we want an automatic rule, and what are the known exceptions?
 - Seen in: PR 91, 300, 301.
 
 ## 2. No hard-coded English text

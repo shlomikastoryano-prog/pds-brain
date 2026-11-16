@@ -9,7 +9,7 @@ Rule: use the "Apply now" list. Do not use the "Not for our version" list.
 - **TypeScript:** use strict typing. Prefer inference when the type is obvious. Avoid `any`, use `unknown` when the type is uncertain.
 - **Components:** keep them small, with a single responsibility. Use `input()` and `output()` functions, `model()` for two-way binding, `computed()` for derived state, `linkedSignal()` for state derived from several sources.
 - **State:** use signals for local state. Keep transformations pure. Use `update` or `set`, never `mutate`.
-- **Templates:** keep them simple, no complex logic. Use `@if`, `@for`, `@switch` instead of `*ngIf`, `*ngFor`, `*ngSwitch`. Use the async pipe for observables.
+- **Templates:** keep them simple, no complex logic. Do not call plain functions from a template (they run on every change detection). Signals and `computed` are fine. Use `@if`, `@for`, `@switch` instead of `*ngIf`, `*ngFor`, `*ngSwitch`. Use the async pipe for observables.
 - **Bindings:** use `class` and `style` bindings instead of `ngClass` and `ngStyle`. Import only the directives and pipes the template uses, not `CommonModule`.
 - **Host bindings:** use the `host` object of the decorator, not `@HostBinding` or `@HostListener`.
 - **Services:** one responsibility each. Use `inject()` instead of constructor injection.
