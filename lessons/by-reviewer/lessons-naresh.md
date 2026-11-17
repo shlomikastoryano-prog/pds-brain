@@ -1,6 +1,6 @@
 # Review lessons: Naresh
 
-Status: draft, not yet approved.
+Status: approved by the team reviewer. Open items are marked in the text.
 Source: 15 review comments in 9 merged PRs, 2024-12-04 to 2025-11-07.
 Lessons 2, 3 and 4 come from one long comment in PR 189 that looks like an automated review. Treat them as suggestions, not confirmed team rules.
 Format: Do / Avoid / Why / Example. Examples are short illustrations written from the review comment, not copied code. "Why" is stated only where the review gave a reason.

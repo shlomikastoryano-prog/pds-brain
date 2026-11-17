@@ -1,6 +1,6 @@
 # Jira ticket template
 
-Status: draft, not yet approved. To be agreed with the team (the PDF lists this as a next step).
+Status: approved by the team reviewer. Open items are marked in the text.
 Source: the ticket fields in the guidance PDF "Working with Claude End-to-End" (Oct 29, 2026).
 Why: the agents read the ticket directly from Jira, so the ticket is the prompt. A vague ticket gives a vague PR.
 Use: the ticket-picker (SHELL-745) checks that every field is filled before work starts. The planner (SHELL-746) reads the code area to build the plan.

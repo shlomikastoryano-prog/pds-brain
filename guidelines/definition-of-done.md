@@ -1,6 +1,6 @@
 # Definition of done: a PR is ready for review when
 
-Status: draft, not yet approved.
+Status: approved by the team reviewer. Open items are marked in the text.
 Source: the checklist in the guidance PDF "Working with Claude End-to-End: From Jira Ticket to Merged PR" (Oct 29, 2026).
 Use: the pre-check agent (SHELL-742) reads this list before a PR is opened. A task is done only when an automated check says so, not when it looks finished.
 

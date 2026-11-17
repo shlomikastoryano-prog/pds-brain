@@ -1,6 +1,6 @@
 # Angular guidelines
 
-Status: draft, not yet approved.
+Status: approved by the team reviewer. Open items are marked in the text.
 Source: the Angular team's own rules file for AI tools (https://angular.dev/assets/context/best-practices.md), downloaded 2026-11-12 and adapted to our version.
 Our version: Angular 19.2 (`@angular/core ^19.2.14`), PrimeNG 17, TypeScript 5.8. Checked in package.json.
 Rule: use the "Apply now" list. Do not use the "Not for our version" list.

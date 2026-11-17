@@ -1,6 +1,6 @@
 # Accessibility guidelines
 
-Status: draft, not yet approved.
+Status: approved by the team reviewer. Open items are marked in the text.
 Target: WCAG 2.x level AA, and the code must pass AXE checks (from the official Angular rules file, see `angular.md`).
 Sources are marked on each rule:
 - **Team** = a review comment from our own PRs (`lessons/by-reviewer/`).

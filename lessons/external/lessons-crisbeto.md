@@ -1,6 +1,6 @@
 # Lessons from an external reviewer (angular/components, crisbeto)
 
-Status: draft, not yet approved.
+Status: reviewed by the team reviewer. Use only as ideas, because it comes from an outside library (see Fit).
 Source: 53 review comments, 2026-05-13 to 2026-11-06, about 35 PRs in the public repo angular/components.
 Format: Do / Avoid / Why / Example. Examples are short illustrations written from the review comment, not copied code.
 Fit: these come from Angular Material, a public library. Each lesson must be checked against phenom-ds and its Angular version before it becomes a rule. Lessons marked "context only" probably do not apply.

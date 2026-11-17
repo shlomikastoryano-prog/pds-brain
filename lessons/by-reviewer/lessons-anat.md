@@ -1,6 +1,6 @@
 # Review lessons: Anat
 
-Status: draft, not yet approved.
+Status: approved by the team reviewer. Open items are marked in the text.
 Source: 30 review comments in 17 merged PRs, 2026-09-14 to 2026-11-05. Long comments were read only in part.
 Format: Do / Avoid / Why / Example. Examples are short illustrations written from the review comment, not copied code.
 

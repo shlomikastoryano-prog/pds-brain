@@ -1,6 +1,6 @@
 # Review lessons: Mayank
 
-Status: draft, not yet approved.
+Status: approved by the team reviewer. Open items are marked in the text.
 Source: 63 review comments in 34 merged PRs, 2025-01-10 to 2026-09-08.
 Format: Do / Avoid / Why / Example. Examples are short illustrations written from the review comment, not copied code. "Why" is stated only where the review gave a reason; otherwise it is marked.
 
