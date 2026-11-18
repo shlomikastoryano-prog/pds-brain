@@ -10,7 +10,7 @@ Use: the pre-check agent (SHELL-742) reads this list before a PR is opened. A ta
 | 2 | The reviewer agent ran and every issue was fixed | The review step runs before the PR opens, and no issue is left open |
 | 3 | Pre-commit checks pass | Lint, format, commit format and Jira key |
 | 4 | Integration tests are added and pass | Tests exist for the change and pass. Reviewer: integration tests matter most for table-style patterns where much of the data comes from the backend. Open: is a documentation page with an implementation example needed for such patterns? |
-| 5 | Storybook stories and play functions are added; Chromatic shows only intended changes | Stories and play functions exist for the change. Open: is Chromatic in use? Reviewer: needs a deeper check. |
+| 5 | Storybook stories and play functions are added; Chromatic shows only intended changes | Stories and play functions exist for the change. Reviewer: play functions are wanted in principle, and are a feature to start using. Open: does our Storybook configuration run them? Chromatic: the reviewer asked for deeper research on the addon and how to use it. |
 | 6 | Accessibility check passes | AXE runs on every new or changed Design System element, through its Storybook stories. AXE starts as a **warning** (does not block the PR); the reviewer may tighten it later. The agent returns the AXE result and a list of manual checks. The manual checks are done by the designer together with the agent |
 | 7 | The PR description links the ticket and notes any feature flag | The description has the ticket link and the feature flag note, and its claims match the change |
 
@@ -23,4 +23,5 @@ A check counts only if the agent's report shows it ran. "Nothing found" is not p
 
 ## Open questions for the team
 - Do integration tests apply beyond table-style patterns with backend data? Is a documentation page with an implementation example needed for those patterns?
-- Is Chromatic in use, and is its cloud connection set up? Are play functions required? (Reviewer: needs a deeper check.)
+- Does our Storybook configuration run play functions (for example in CI)? The reviewer does not know, and wants to start using them.
+- Chromatic: research the addon and how to use it (reviewer, 2026-11-18). Is it in use, and is its cloud connection set up?
