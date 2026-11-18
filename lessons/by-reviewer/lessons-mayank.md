@@ -77,10 +77,12 @@ Format: Do / Avoid / Why / Example. Examples are short illustrations written fro
 - Seen in: PR 46.
 
 ## 12. Follow the ticket
-- **Do:** check the requirements in the Jira ticket before and after the change.
-- **Avoid:** adding or removing UI the ticket does not mention. If it was added on purpose, link the ticket that requires it.
-- **Why:** reviewers pointed to the ticket twice to explain what was required.
-- Seen in: PR 118, 264.
+- **Do:** check the requirements in the Jira ticket before and after the change. Make sure every acceptance criterion (AC) in the ticket can be checked: by a story that binds the inputs it needs, or by an automated test.
+- **Avoid:** adding or removing UI the ticket does not mention. If it was added on purpose, link the ticket that requires it. Also avoid an AC that has no way to check it, such as story controls that are not bound to anything, or a diff with stories and styles but no tests.
+- **Why:** reviewers pointed to the ticket twice to explain what was required. In PR 395 the hover criteria (AC2, AC5) could not be checked in Storybook, and in PR 385 there were no tests for the AC.
+- **Acceptance criterion:** one numbered, checkable statement in the Jira ticket about what the change must do (AC1, AC2 ...). Not a general quality criterion such as "clean code". The AC part was added after the reviewer said it belongs in this lesson (2026-11-18).
+- **Example:** a story with 22 columns, `rowHover: true` and `selectionMode: 'multiple'` to check the hover criteria. Or a small test that asserts the default gaps of a grid.
+- Seen in: PR 118, 264, 385, 395.
 
 ## 13. Check other teams before removing
 - **Do:** ask the teams that use an icon or an API before removing it.
