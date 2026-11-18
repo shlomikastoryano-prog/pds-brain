@@ -19,9 +19,10 @@ Status: candidate. Not a lesson yet. It becomes a lesson when it repeats in anot
 - **Target file:** to be decided if it repeats.
 - **Person's decision:** pending.
 
-### Verification (2026-11-18): not confirmed
-- **PR 373, comment 883656791:** about the accuracy of the docs (what the schematic installs). A different request, so it is not counted.
-- **PR 394, comment 893112618, point 2:** a visual change for consumers is missing from the "Behavior change" section. Partial: it asks to list the change, not to write it in the docs.
-- **PR 379, comment 883678812:** "A consumer will treat the table as the complete API and may never learn that `appendTo` exists". Not read in full, and may be a match.
-- Covered partly by Anat 8 (CHANGELOG and PR description).
-- **Next:** read the full comments of PR 379 and PR 394 before deciding.
+### Verification (2026-11-18, full comment text): weak, stays a candidate
+- **PR 395:** the reviewer asked for the guidance in the docs, twice. Clear match.
+- **PR 385, comment 886441518, "Lower priority":** "a one-line note in the docs would help" about a horizontal scrollbar when the container has less than 12px side padding. A match, but marked lower priority.
+- **PR 394, comment 893112618:** point 2: "Neither is listed under 'Behavior change'" (no place given). Point 5: "Consider documenting that only these two hosts are auto-detected" (no place given, and only "consider"). Partial.
+- **PR 379, comment 883678812:** the Props table in the docs must be complete and correct. A different request, covered by Anat 9 (PR 379 is already listed there). Not counted.
+- **PR 373:** accuracy of the docs. A different request. Not counted.
+- **Result:** 2 PRs with a real match (395 and 385), but only 395 asks for it with weight. Keep as a candidate until a stronger repeat.

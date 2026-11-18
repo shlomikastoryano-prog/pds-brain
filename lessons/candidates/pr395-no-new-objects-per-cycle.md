@@ -12,7 +12,7 @@ Status: candidate. Not a lesson yet. The wording was widened after the check on 
 ### Evidence (checked against the full comment text, 2026-11-18). All three are partial matches of the wider idea.
 - **PR 395:** the demo's `ngOnChanges` rebuilt `columns` on every input change, so the table re-rendered its headers and lost widths and sort state.
 - **PR 388, comment 887204490, point 3:** every selection change resets and re-attaches the buttons several times. "A cheap fix: skip the reset when the actions array identity, width and counts are unchanged."
-- **PR 394, comment 893112618, point 4:** "resolvedPanelStyle returns a new object each time, so p-calendar sees a changed panelStyle input on every pass". The suggested fix is to memoize. (The end of this comment was not read in full.)
+- **PR 394, comment 893112618, point 4:** "resolvedPanelStyle returns a new object each time, so p-calendar sees a changed panelStyle input on every pass". The suggested fix is to memoize the panel style object (keyed on `this.panelStyle`) and compute `insideOverlayHost` once. Confirmed after reading the full comment (3428 characters).
 - No PR matched the narrow wording (`ngOnChanges` rebuilding a derived array).
 
 ### Proposal details
