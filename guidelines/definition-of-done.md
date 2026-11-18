@@ -25,3 +25,10 @@ A check counts only if the agent's report shows it ran. "Nothing found" is not p
 - Do integration tests apply beyond table-style patterns with backend data? Is a documentation page with an implementation example needed for those patterns?
 - Does our Storybook configuration run play functions (for example in CI)? The reviewer does not know, and wants to start using them.
 - Chromatic: research the addon and how to use it (reviewer, 2026-11-18). Is it in use, and is its cloud connection set up?
+
+## What the code of the DS repo shows today (checked 2026-11-18, read only)
+- **Play functions:** 32 story files have `play:`. There is no runner for them: no `@storybook/test-runner`, no `@storybook/addon-vitest`, no vitest or playwright, and no `test-storybook` script. `npm test` runs Jest only. So play functions run only when a story is opened in Storybook, not automatically.
+- **Chromatic:** only the addon `@chromatic-com/storybook` is installed (`package.json`, `.storybook/main.ts`). There is no Chromatic CLI, script, config file or CI mention in the repo. If it is connected, it is not through this repo. To be verified.
+- **AXE:** `@storybook/addon-a11y` is installed and shows a panel in the browser. Nothing runs it automatically on every story. For the pre-check agent to run AXE on every story, a runner has to be added (to be verified).
+- **Not known:** the shared Jenkins pipeline has a step named `executeUiTests`. Its content is not in this repo, so it is not known whether it runs any Storybook tests. A question for whoever owns the pipeline.
+
