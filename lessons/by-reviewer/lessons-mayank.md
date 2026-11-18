@@ -78,11 +78,13 @@ Format: Do / Avoid / Why / Example. Examples are short illustrations written fro
 
 ## 12. Follow the ticket
 - **Do:** check the requirements in the Jira ticket before and after the change. Make sure every acceptance criterion (AC) in the ticket can be checked: by a story that binds the inputs it needs, or by an automated test.
-- **Avoid:** adding or removing UI the ticket does not mention. If it was added on purpose, link the ticket that requires it. Also avoid an AC that has no way to check it, such as story controls that are not bound to anything, or a diff with stories and styles but no tests.
-- **Why:** reviewers pointed to the ticket twice to explain what was required. In PR 395 the hover criteria (AC2, AC5) could not be checked in Storybook, and in PR 385 there were no tests for the AC.
-- **Acceptance criterion:** one numbered, checkable statement in the Jira ticket about what the change must do (AC1, AC2 ...). Not a general quality criterion such as "clean code". The AC part was added after the reviewer said it belongs in this lesson (2026-11-18).
-- **Example:** a story with 22 columns, `rowHover: true` and `selectionMode: 'multiple'` to check the hover criteria. Or a small test that asserts the default gaps of a grid.
+- **If the ticket changes while you work** (a new requirement, or an AC that changed): update the ticket, add checks for the new or changed ACs, and say in the PR description what changed compared with the original ticket.
+- **Avoid:** adding or removing UI the ticket does not mention. If it was added on purpose, link the ticket that requires it. Also avoid an AC that has no way to check it, such as story controls that are not bound to anything, or a diff with stories and styles but no tests. And avoid checking only against the original ticket.
+- **Why:** reviewers pointed to the ticket twice to explain what was required. An AC with no check cannot be verified by the reviewer. A change to the ticket during the work is easy to miss, and then the tests for it are missing.
+- **Acceptance criterion:** one numbered, checkable statement in the Jira ticket about what the change must do (AC1, AC2 ...). Not a general quality criterion such as "clean code".
+- **Example:** a story that binds `rowHover` and `selectionMode` so the hover criteria can be checked. Or a small test that asserts the default gaps of a grid.
 - Seen in: PR 118, 264, 385, 395.
+- The AC part and the "ticket changes" part were added at the reviewer's request (2026-11-18).
 
 ## 13. Check other teams before removing
 - **Do:** ask the teams that use an icon or an API before removing it.
