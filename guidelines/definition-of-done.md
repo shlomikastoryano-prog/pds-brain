@@ -6,7 +6,7 @@ Use: the pre-check agent (SHELL-742) reads this list before a PR is opened. A ta
 
 | # | Item | What the pre-check agent must check |
 |---|------|--------------------------------------|
-| 1 | The ticket's own definition of done is met | Read the definition of done from the Jira ticket as it is now, and its history since the work started (edits to the description and comments). Mark what changed compared with the original ticket, and confirm that each point, including the new or changed ones, has a check. Open: can the agent read the Jira history? (to be verified) |
+| 1 | The ticket's own definition of done is met | Read the definition of done from the Jira ticket as it is now, and its history since the work started (edits to the description and comments). Mark what changed compared with the original ticket, and confirm that a decision was made for each change: it stays in this ticket or moves to a new one. For each point that stays, including the new or changed ones, confirm it has a check. Open: can the agent read the Jira history? (to be verified) |
 | 2 | The reviewer agent ran and every issue was fixed | The review step runs before the PR opens, and no issue is left open |
 | 3 | Pre-commit checks pass | Lint, format, commit format and Jira key |
 | 4 | Integration tests are added and pass | Tests exist for the change and pass. Reviewer: integration tests matter most for table-style patterns where much of the data comes from the backend. Open: is a documentation page with an implementation example needed for such patterns? |
