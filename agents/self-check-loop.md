@@ -7,7 +7,7 @@ Why not one agent that writes, checks and fixes: an agent that checks its own wo
 
 ## Dependencies and known gaps
 - **Agents it calls:** `phenom-ds-validator` and `pr-reviewer-sim`. Today they exist only as personal Claude Code agents in `~/.claude/agents/`, so the loop runs only where they are installed. Packaging them for the team is part of SHELL-742.
-- **Incremental rounds need a validator change.** The validator has no input for "re-run only these checks". It always runs every step, including the full test run (about 3 minutes). Until that input exists, each round is a full run. Open.
+- **Every round is a full run.** The validator always runs every step, including the full test run (about 3 minutes), and the loop uses it that way. This is on purpose: a fix can break something that passed before, and only a full run shows it. If the time per round turns out to be too long, measure it first and only then consider partial rounds (which need a new input in the validator). Open.
 - **Rules source.** The validator still reads rules and lessons from personal skills, not from the brain (SHELL-742).
 - Not tested. Run it first on a small change and read each round's log.
 
@@ -34,14 +34,15 @@ Why not one agent that writes, checks and fixes: an agent that checks its own wo
 
 ## Rounds (maximum 3)
 For each round N:
-1. Run the validator with the input above. In round 1 this is a full run. In later rounds, ask it to re-run the checks that failed and the changed files, if it supports that; otherwise a full run (see Dependencies).
+1. Run the validator with the input above. Every round is a full run.
 2. Write the round log (below).
 3. Decide what happens next, in this order:
    - **PASS** (WARNs allowed): go to "Finish".
    - **BLOCKED** (a check could not run, for example VPN or registry): stop, show the blocked check and its error.
    - **No progress:** the same FAIL (same file and same problem) appears in two rounds in a row. Stop and show it. Another round would not change anything.
    - **Round 3 finished and still FAIL:** stop and show the findings.
-   - Otherwise fix the FAILs, then the WARNs that are clear and inside the scope. Run the next round.
+   - **Regression:** compare this round's findings with the previous round's (same file and same problem counts as the same finding). A finding that was not there before is "new after the fix". If the new FAILs are as many as, or more than, the findings fixed in the previous round, stop and show the person.
+   - Otherwise fix first the findings that are new after the fix (the last change is the likely cause), then the other FAILs, then the WARNs that are clear and inside the scope. Run the next round.
 4. After you fix, name every file you changed in the log.
 
 ## Finish
@@ -54,6 +55,7 @@ Save one file per run: `~/.claude/validator-reports/<branch>_loop_<YYYY-MM-DD-HH
 - Round number and validator verdict.
 - Findings fixed, one line each: file, line, what changed.
 - Findings left, with the reason (needs a decision, out of scope, manual check).
+- Findings that are new compared with the previous round (caused by the last fix), or "none".
 - Files changed in this round.
 - The path of the validator's own report for that round.
 End the run with the path of this log.
