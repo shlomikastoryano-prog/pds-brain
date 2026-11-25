@@ -12,7 +12,7 @@ The shared knowledge base of the phenom-ds design system team. AI agents (Claude
 | `templates/` | The template for proposing a new lesson. |
 | `agents/` | Prompts of agents (drafts, not all tested). |
 | `skills/`, `scripts/` | Standalone Claude Code skills built from the files above, and the scripts that build and install them. Do not edit `skills/` by hand: the next build overwrites it. |
-| `sources/` | Original documents, for people. Agents must not read it. |
+| `.sources/` | Original documents, for people. A hidden folder: agents must not read it. |
 
 ## How it is used
 - **In the phenom-ds repo** the brain is a git submodule in `brain/`. `AGENTS.md` tells the agents which file to read for which task. After you pull the repo, run `git submodule update --init` once.
