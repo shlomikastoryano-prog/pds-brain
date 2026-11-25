@@ -7,6 +7,7 @@ Why not one agent that writes, checks and fixes: an agent that checks its own wo
 
 ## Dependencies and known gaps
 - **Agents it calls:** `phenom-ds-validator` and `pr-reviewer-sim`. Today they exist only as personal Claude Code agents in `~/.claude/agents/`, so the loop runs only where they are installed. Packaging them for the team is part of SHELL-742.
+- **Always three full runs.** The loop runs all 3 rounds even when everything passes, so a run takes at least three times the validator's time (about 10 minutes or more).
 - **Every round is a full run.** The validator always runs every step, including the full test run (about 3 minutes), and the loop uses it that way. This is on purpose: a fix can break something that passed before, and only a full run shows it. If the time per round turns out to be too long, measure it first and only then consider partial rounds (which need a new input in the validator). Open.
 - **Rules source.** The validator still reads rules and lessons from personal skills, not from the brain (SHELL-742).
 - Not tested. Run it first on a small change and read each round's log.
@@ -40,12 +41,13 @@ The reviewer wants to see the history of the rounds, so each round leaves a comm
 - Push: right after each round's commit, `git push origin <branch>` (add `-u` if the branch has no upstream). Only a branch named `SHELL-<number>_...`. A plain push only: if it is rejected (the remote has commits you do not have, or the branch was rewritten), stop and show the person. Do not fetch-and-force, do not rebase to make it pass.
 - The person's own rules still apply. If the person's instructions say to ask before a push, ask before each push.
 
-## Rounds (maximum 3)
-For each round N:
+## Rounds (always 3, unless a stop rule applies)
+The loop does not stop when the validator passes. The check exists to find what was missed, so all 3 rounds run even if round 1 finds nothing. Each round starts a fresh validator run. Do not give it the findings of the previous rounds: it must look at the work cold. You do the comparison between rounds yourself.
+For each round N (1 to 3):
 1. Run the validator with the input above. Every round is a full run.
 2. Write the round log (below).
 3. Decide what happens next, in this order:
-   - **PASS** (WARNs allowed): go to "Finish".
+   - **PASS** (WARNs allowed): do not stop. If N is less than 3, run the next round with no changes (no commit, since nothing changed). After round 3, go to "Finish".
    - **BLOCKED** (a check could not run, for example VPN or registry): stop, show the blocked check and its error.
    - **No progress:** the same FAIL (same file and same problem) appears in two rounds in a row. Stop and show it. Another round would not change anything.
    - **Round 3 finished and still FAIL:** stop and show the findings.
